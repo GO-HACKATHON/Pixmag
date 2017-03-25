@@ -40,6 +40,11 @@ const Styles = StyleSheet.create ({
     height: 500,
     backgroundColor:'white',
     width:'100%',
-  }
+  },
+  Login : {
+    backgroundColor : '#32CD32',
+    width : '100%',
+    height : '100%',
+  },
 });
 export default Styles;

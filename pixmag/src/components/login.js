@@ -29,8 +29,8 @@ class LoginID extends Component {
 	}
 	render(){
 		return(
-			<View>
-
+			<View style={Styles.Login}>
+          <Text>Cek</Text>
 			</View>
 		);
 	}
