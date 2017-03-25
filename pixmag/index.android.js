@@ -15,8 +15,8 @@ import LoginID from './src/components/login.js';
 
 export default class pixmag extends Component {
   Routes(route, navigator){
-    if(route.name === "home"){
-      return <Home navigator={navigator}/>
+    if(route.name === "home" ){
+      return <Home navigator={navigator} />
     }else if (route.name === 'chat'){
       return <Chat navigator ={navigator}/>
     }else if (route.name === 'login'){
