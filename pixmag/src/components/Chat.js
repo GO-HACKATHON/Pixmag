@@ -7,14 +7,13 @@ import{
 
 } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
-
 import Backend from '../Backend';
 
 class Chat extends React.Component {
 	constructor(props) {
-    	super(props);
-    	this.state = {messages: []};
-    	this.onSend = this.onSend.bind(this);
+		super(props);
+		this.state = {messages: []};
+		this.onSend = this.onSend.bind(this);
   	}
 
 	componentWillMount() {
@@ -57,10 +56,10 @@ class Chat extends React.Component {
 				messages={this.state.messages}
 				onSend={(this.onSend)}
 				user={{
-				_id: Backend.getUid(),
-				name: this.props.name,
-			}}
-      />
+					_id: Backend.getUid(),
+					name: this.props.name,
+				}}
+      		/>
 		);
 	}
 
@@ -78,5 +77,13 @@ class Chat extends React.Component {
 		Backend.closeChat();
 	}
 }
+
+Chat.defaultProps = {
+	name: 'Dio',
+};
+
+Chat.propTypes = {
+	name: React.PropTypes.string,
+};
 
 export default Chat;
