@@ -12,7 +12,7 @@ import Backend from '../Backend';
 class Chat extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {messages: []};
+		this.state = {messages: [], name:'dio'};
 		this.onSend = this.onSend.bind(this);
   	}
 
@@ -64,7 +64,7 @@ class Chat extends React.Component {
 	}
 
 	componentDidMount(){
-		Backend.loadChat((messages)=>{
+		Backend.loadMessages((messages)=>{
 			this.setState((previousState)=>{
 				return {
 					messages: GiftedChat.append(previousState.messages, messages),

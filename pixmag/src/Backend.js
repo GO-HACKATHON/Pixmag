@@ -2,7 +2,7 @@ import firebase from 'firebase'
 
 class Backend{
     uid='';
-    messageRef = null;
+    messagesRef = null;
 
     constructor(){
         var config = {
@@ -12,16 +12,23 @@ class Backend{
             storageBucket: "react-pixmag.appspot.com"
         };
         firebase.initializeApp(config);
-        // firebase.auth().onAuthStateChanged((user) => {
-        //     if(user){
-        //         this.setUid(user.uid);
-        //     }else{
-        //         firebase.auth().signInAnonymously().catch((error) =>{
-        //             alert(error.message);
-        //         });
-        //     }
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                this.setUid(user.uid);
+            }else{
+                firebase.auth().signInAnonymously().catch((error) =>{
+                    alert(error.message);
+                });
+            }
 
-        // })
+        });
+        var ref = firebase.database().ref().child('messages');
+        ref.on("value", function(snapshot) {
+           console.log(snapshot.val());
+        }, function (errorObject) {
+           console.log("The read failed: " + errorObject.code);
+        });
+
     }
 
     setUid(value){
@@ -31,9 +38,10 @@ class Backend{
         return this.uid;
     }
 
-    loadChat(callback){
-        this.messageRef = firebase.database().ref('messages');
-        this.messageRef.off();
+    loadMessages(callback){
+        this.messagesRef = firebase.database().ref('messages');
+        this.messagesRef.off();
+        console.log(this.messagesRef);
         const onReceive = (data) => {
             const message = data.val();
             callback({
@@ -46,22 +54,21 @@ class Backend{
                 }
             });
         };
-        //this.messageRef.limitToLast(20).on('child-added', onReceive);
+       try
+       {
+           this.messagesRef.limitToLast(20).on('child-change', onReceive);
+       }
+       catch(err)
+       {
+
+       }
+        
     }
     
 
     sendMessage(message){
-        // console.log(message);
-        // for(let i=0;i < message.length ; i++){
-        //     firebase.database().ref().child('messages').push().set({
-        //         text: message[i].text,
-        //         user: message[i].user,
-        //         createdAt: firebase.database.ServerValue.TIMESTAMP
-        //     });
-        // }
-
         for(let i=0;i < message.length ; i++){
-            this.messageRef.push({
+            this.messagesRef.push({
                text: message[i].text,
                user: message[i].user,
                createdAt: firebase.database.ServerValue.TIMESTAMP
@@ -70,8 +77,8 @@ class Backend{
     }
 
     closeChat(){
-        if(this.messageRef){
-            this.messageRef.off();
+        if(this.messagesRef){
+            this.messagesRef.off();
         }
     }
 }
