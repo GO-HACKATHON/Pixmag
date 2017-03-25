@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebApiPixMag.Services;
+using WebApiPixMag.Model;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,17 +14,28 @@ namespace WebApiPixMag.Controllers
     public class LoginController : Controller
     {
         // GET: api/values
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
+
+        // GET api/values/5
         [HttpGet]
-        public IEnumerable<string> Get()
+        public User Get(string name, string password)
         {
-            return new string[] { "value1", "value2" };
+            LoginServices oLoginService = new LoginServices();
+            var ouser = oLoginService.UserLogin(name, password);
+            return ouser;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            LoginServices oLoginService = new LoginServices();
+            var a = oLoginService.UserLogin("darma","darma1314");
+            return "valuea";
         }
 
         // POST api/values
