@@ -49,11 +49,11 @@ class LoginID extends Component {
         </View>
         <View style={{alignItems:'center',marginTop:1}}>
               <TextInput
+          style={{password: true,secureTextEntry: true}}
            style={Styles.Input}
            onChangeText={(pass) => this.setState({pass})}
            value={this.state.pass}
-           underlineColorAndroid = 'transparent',
-
+           underlineColorAndroid = 'transparent'
          />
          </View>
          <View style={{alignItems:'center',marginTop:10}}>
