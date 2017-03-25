@@ -40,10 +40,11 @@ class Home extends Component {
 				<Text style={Styles.content}>
 					Ini Homeee
 				</Text>
-				<Button onPress={()=> this.navigate('chat')}
+				<Button
+				onPress={()=> this.navigate('chat')}
 				title="Learn More"
-  color="#841584"
-  accessibilityLabel="Learn more about this purple button"
+			  color="#841584"
+			  accessibilityLabel="Learn more about this purple button"
 				/>
 			</View>
 		);

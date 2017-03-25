@@ -9,6 +9,7 @@ import {
 import Chat from './src/components/Chat.js';
 import Home from './src/components/Home.js';
 import Styles from './src/components/style.js';
+import LoginID from './src/components/login.js';
 
 
 
@@ -18,12 +19,14 @@ export default class pixmag extends Component {
       return <Home navigator={navigator} />
     }else if (route.name === 'chat'){
       return <Chat navigator ={navigator}/>
+    }else if (route.name === 'login'){
+      return <LoginID navigator={navigator}/>
     }
   }
   render() {
     return (
       <Navigator
-      initialRoute={{name :'home'}}
+      initialRoute={{name :'login'}}
       renderScene={this.Routes.bind(this) }
       />
     );
