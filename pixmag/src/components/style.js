@@ -42,7 +42,7 @@ const Styles = StyleSheet.create ({
     width:'100%',
   },
   Login : {
-    backgroundColor : '#32CD32',
+    backgroundColor : '#454e5f',
     width : '100%',
     height : '100%',
   },
