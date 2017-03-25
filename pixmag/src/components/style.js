@@ -64,12 +64,14 @@ const Styles = StyleSheet.create ({
     borderRadius:20,
   },
   ButtonWrapper : {
-    width: '100%',
+    width: 250,
+    height:40,
     alignItems:'center',
     marginTop:20,
+    borderRadius:150,
     borderWidth :2,
     borderColor:'white',
-    backgroundColor: 'white',
+    backgroundColor: '#5FC3E4',
   },
 
 });

@@ -45,6 +45,7 @@ class LoginID extends Component {
            onChangeText={(user) => this.setState({user})}
            value={this.state.user}
            underlineColorAndroid = 'transparent'
+           placeholderTextColor='gray'
          />
         </View>
         <View style={{alignItems:'center',marginTop:1}}>
@@ -54,15 +55,14 @@ class LoginID extends Component {
            onChangeText={(pass) => this.setState({pass})}
            value={this.state.pass}
            underlineColorAndroid = 'transparent'
+           placeholderTextColor='white'
+           secureTextEntry={true}
          />
          </View>
          <View style={{alignItems:'center',marginTop:10}}>
-              <Button
-              onPress={()=> this.navigate('chat')}
-              title="Log In"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-              />
+              <View style={Styles.ButtonWrapper}>
+              <Text style={{lineHeight:25,color:'white',fontWeight:'bold',width:'100%',textAlign:'center'}} onPress={()=> this.navigate('chat')}>Log In</Text>
+              </View>
           </View>
 			</View>
 		);
