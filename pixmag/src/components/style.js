@@ -46,5 +46,31 @@ const Styles = StyleSheet.create ({
     width : '100%',
     height : '100%',
   },
+  Logo : {
+    width:'100%',
+    paddingTop:150,
+  },
+  Input : {
+    width: 250,
+    height: 40,
+    borderColor: 'white',
+    color:'black',
+    marginTop: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderWidth :2,
+    borderColor:'white',
+    backgroundColor: 'white',
+    borderRadius:20,
+  },
+  ButtonWrapper : {
+    width: '100%',
+    alignItems:'center',
+    marginTop:20,
+    borderWidth :2,
+    borderColor:'white',
+    backgroundColor: 'white',
+  },
+
 });
 export default Styles;
