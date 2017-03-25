@@ -25,6 +25,7 @@ class Backend{
         var ref = firebase.database().ref().child('messages');
         ref.on("value", function(snapshot) {
            console.log(snapshot.val());
+           this.messagesRef=snapshot.val();
         }, function (errorObject) {
            console.log("The read failed: " + errorObject.code);
         });
@@ -37,31 +38,38 @@ class Backend{
     getUid(value){
         return this.uid;
     }
+    getallData(value){
+        return this.messagesRef;
+        
+    }
 
-    loadMessages(callback){
-        this.messagesRef = firebase.database().ref('messages');
-        this.messagesRef.off();
-        console.log(this.messagesRef);
-        const onReceive = (data) => {
-            const message = data.val();
-            callback({
-                _id: data.key,
-                text: message.text,
-                CreatedAt: new Date(message.createdAt),
-                user:{
-                    _id: message.user._id,
-                    name: message.user.name
-                }
-            });
-        };
-       try
-       {
-           this.messagesRef.limitToLast(20).on('child-change', onReceive);
-       }
-       catch(err)
-       {
-
-       }
+    loadMessages(){
+        //this.messagesRef = firebase.database().ref('messages');
+        //
+        // console.log("data");
+        // console.log(this.messagesRef);
+        // const onReceive = (data) => {
+        //     const message = data.val();
+        //     callback({
+        //         _id: data.key,
+        //         text: message.text,
+        //         CreatedAt: new Date(message.createdAt),
+        //         user:{
+        //             _id: message.user._id,
+        //             name: message.user.name
+        //         }
+        //     });
+        // };
+        //this.messagesRef.limitToLast(20).on('child-change');
+        //this.messagesRef.off();
+       var ref = firebase.database().ref().child('messages');
+        ref.on("value", function(snapshot) {
+           console.log("data");
+           console.log(snapshot.val());
+           return snapshot.val();
+        }, function (errorObject) {
+           console.log("The read failed: " + errorObject.code);
+        });
         
     }
     
