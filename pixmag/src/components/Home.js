@@ -8,6 +8,8 @@ import{
 
 import Styles from './style.js';
 import Chat from './Chat.js';
+import Backend from '../Backend';
+
 class Home extends Component {
 	constructor(){
 		super();
