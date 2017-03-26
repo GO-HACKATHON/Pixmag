@@ -6,6 +6,7 @@ import{
 
 } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
+import CacheStore from 'react-native-cache-store';
 // import Backend from '../Backend';
 import firebase from 'firebase'
 class Chat extends React.Component {
@@ -14,8 +15,8 @@ class Chat extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			messages: [], 
-			name:'dio',
+			messages: [],
+			name:'',
 			userid:'',
 	    };
 		this.onSend = this.onSend.bind(this);
@@ -40,7 +41,7 @@ class Chat extends React.Component {
             }
 
         });
-       
+
   	}
 	sendMessage(message){
         for(let i=0;i < message.length ; i++){
@@ -48,11 +49,10 @@ class Chat extends React.Component {
 				_id:this.state.messages.length,
 				text: message[i].text,
 				createdAt: new Date(Date.UTC(2016, 7, 30, 17, 20, 0)),
-				
                user: message[i].user,
-            });		
+            });
         }
-		
+
     }
 
     closeChat(){
@@ -63,6 +63,9 @@ class Chat extends React.Component {
 
 	componentWillMount() {
 		var _this=this;
+		CacheStore.get('userchat').then((value) => {
+			this.setState({name:value});
+		});
 		this.messagesRef = firebase.database().ref('messages');
 		this.databind();
 console.log("test");
@@ -80,7 +83,7 @@ console.log("test");
 		console.log("datanya");
 		//console.log(Backend.getallData());
 
-		
+
 	}
 
 databind(){
@@ -90,7 +93,7 @@ databind(){
            console.log(snapshot.val());
 		   if(snapshot.val()!=null)
 		   {
-			   
+
 			   var obj =snapshot.val();
 			   var arr = Object.keys(obj).map(function(k) { return obj[k] });
 
@@ -139,20 +142,22 @@ arr = arr.sort(function(a, b){return b._id-a._id});
 	}
 	render(){
 		return(
+			<View style={{height:'100%'}}>
+			<Text style={{backgroundColor:'#008000',height:40,textAlign:'center',paddingTop: 7,fontSize:20,color:'white'}}>{this.props.Username}</Text>
 			<GiftedChat
 				messages={this.state.messages}
 				onSend={(this.onSend)}
 				user={{
 					_id: this.state.userid,//Backend.getUid()
-					name: this.props.name,
+					name: this.state.name,
 					avatar: 'https://facebook.github.io/react/img/logo_og.png',
 				}}
       		/>
+				</View>
 		);
 	}
 
 	componentDidMount(){
-		console.log("dataaaaanya");
 		//console.log(Backend.getallData());
 	}
 
@@ -169,5 +174,7 @@ Chat.defaultProps = {
 Chat.propTypes = {
 	name: React.PropTypes.string,
 };
+
+
 
 export default Chat;

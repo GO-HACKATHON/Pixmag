@@ -21,7 +21,7 @@ namespace WebApiPixMag.Controllers
         //}
 
         // GET api/values/5
-        [HttpGet]
+        [HttpGet("{name}/{password}")]
         public User Get(string name, string password)
         {
             LoginServices oLoginService = new LoginServices();
@@ -29,31 +29,31 @@ namespace WebApiPixMag.Controllers
             return ouser;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            LoginServices oLoginService = new LoginServices();
-            var a = oLoginService.UserLogin("darma","darma1314");
-            return "valuea";
-        }
+        //// GET api/values/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    LoginServices oLoginService = new LoginServices();
+        //    var a = oLoginService.UserLogin("darma","darma1314");
+        //    return "valuea";
+        //}
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST api/values
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

@@ -7,14 +7,17 @@ import{
   TextInput,
   TouchableHighlight,
 } from 'react-native';
-
+import {LoginUser} from '../xhr/getxhr.js';
 import Styles from './style.js';
 import Chat from './Chat.js';
+import CacheStore from 'react-native-cache-store';
 class LoginID extends Component {
 	constructor(){
 		super();
-    this.state = { user: 'Username',pass:'Password' };
+    this.state = { user: '',pass:'' };
 			this.Routes = this.Routes.bind(this);
+			this.handechange = this.handechange.bind(this);
+			this._btnSubmit = this._btnSubmit.bind(this);
 	}
 
 	Routes(route, navigator){
@@ -22,7 +25,7 @@ class LoginID extends Component {
 		if(route.name === "home"){
 			return <Home navigator={navigator}/>
 		}else if (route.name === 'chat'){
-			return <Chat navigator ={navigator}/>
+			return <Chat Username={route.passProps.user} navigator ={navigator}/>
 		}
 	}
 	navigate(name) {
@@ -31,6 +34,22 @@ class LoginID extends Component {
 			name
 		});
 	}
+	handechange(e)
+	{
+		this.setState({user:e});
+		CacheStore.set('userchat', e, 10000);
+
+		CacheStore.get('userchat').then((value) => {
+			console.log(value);
+		});
+
+	}
+
+	_btnSubmit(event){
+
+this.navigate('chat');
+	}
+
 	render(){
 		return(
 			<View style={Styles.Login}>
@@ -42,16 +61,26 @@ class LoginID extends Component {
         <View style={{alignItems:'center',marginTop:20}}>
               <TextInput
            style={Styles.Input}
-           onChangeText={(user) => this.setState({user})}
+           onChangeText={(user) => this.handechange(user)}
            value={this.state.user}
            underlineColorAndroid = 'transparent'
            placeholderTextColor='gray'
          />
         </View>
-
+				<View style={{alignItems:'center',marginTop:1}}>
+						<TextInput
+						style={{password: true,secureTextEntry: true}}
+						style={Styles.Input}
+						onChangeText={(pass) => this.setState({pass})}
+						value={this.state.pass}
+						underlineColorAndroid = 'transparent'
+						placeholderTextColor='white'
+						secureTextEntry={true}
+						/>
+				</View>
          <View style={{alignItems:'center',marginTop:10}}>
               <View style={Styles.ButtonWrapper}>
-              <Text style={{lineHeight:25,color:'white',fontWeight:'bold',width:'100%',textAlign:'center'}} onPress={()=> this.navigate('chat')}>Log In</Text>
+              <Text style={{lineHeight:25,color:'white',fontWeight:'bold',width:'100%',textAlign:'center'}} onPress={this._btnSubmit}>Log In</Text>
               </View>
           </View>
 			</View>
