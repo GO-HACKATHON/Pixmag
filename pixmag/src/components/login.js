@@ -65,6 +65,7 @@ this.navigate('chat');
            value={this.state.user}
            underlineColorAndroid = 'transparent'
            placeholderTextColor='gray'
+					 placeholder="Username"
          />
         </View>
 				<View style={{alignItems:'center',marginTop:1}}>
@@ -76,6 +77,8 @@ this.navigate('chat');
 						underlineColorAndroid = 'transparent'
 						placeholderTextColor='white'
 						secureTextEntry={true}
+						placeholder="Password"
+						placeholderTextColor='gray'
 						/>
 				</View>
          <View style={{alignItems:'center',marginTop:10}}>
