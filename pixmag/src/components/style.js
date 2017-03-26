@@ -42,13 +42,13 @@ const Styles = StyleSheet.create ({
     width:'100%',
   },
   Login : {
-    backgroundColor : '#2c3e54',
+    backgroundColor : '#d41f26',
     width : '100%',
     height : '100%',
   },
   Logo : {
     width:'100%',
-    paddingTop:150,
+    paddingTop:125,
   },
   Input : {
     width: 250,

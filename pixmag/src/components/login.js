@@ -48,17 +48,7 @@ class LoginID extends Component {
            placeholderTextColor='gray'
          />
         </View>
-        <View style={{alignItems:'center',marginTop:1}}>
-              <TextInput
-          style={{password: true,secureTextEntry: true}}
-           style={Styles.Input}
-           onChangeText={(pass) => this.setState({pass})}
-           value={this.state.pass}
-           underlineColorAndroid = 'transparent'
-           placeholderTextColor='white'
-           secureTextEntry={true}
-         />
-         </View>
+
          <View style={{alignItems:'center',marginTop:10}}>
               <View style={Styles.ButtonWrapper}>
               <Text style={{lineHeight:25,color:'white',fontWeight:'bold',width:'100%',textAlign:'center'}} onPress={()=> this.navigate('chat')}>Log In</Text>
