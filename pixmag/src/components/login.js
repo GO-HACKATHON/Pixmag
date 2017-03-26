@@ -46,8 +46,12 @@ class LoginID extends Component {
 	}
 
 	_btnSubmit(event){
+		if(this.state.user!='' || this.state.pass!='')
+		this.navigate('chat');
 
-this.navigate('chat');
+		else{
+			alert("Masukan Username dan password");
+		}
 	}
 
 	render(){

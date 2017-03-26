@@ -113,7 +113,7 @@ arr = arr.sort(function(a, b){return b._id-a._id});
 				user: {
 					_id: 2,
 					name: 'React Native',
-					avatar: 'https://facebook.github.io/react/img/logo_og.png',
+					avatar: 'http://orig12.deviantart.net/ca1f/f/2009/254/e/f/ef4040a54c0eacaaa8c6a5ad87700580.jpg',
 				},
 			},
 		],
@@ -150,7 +150,7 @@ arr = arr.sort(function(a, b){return b._id-a._id});
 				user={{
 					_id: this.state.userid,//Backend.getUid()
 					name: this.state.name,
-					avatar: 'https://facebook.github.io/react/img/logo_og.png',
+					avatar: 'http://orig12.deviantart.net/ca1f/f/2009/254/e/f/ef4040a54c0eacaaa8c6a5ad87700580.jpg',
 				}}
       		/>
 				</View>
