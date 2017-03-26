@@ -143,7 +143,7 @@ arr = arr.sort(function(a, b){return b._id-a._id});
 	render(){
 		return(
 			<View style={{height:'100%'}}>
-			<Text style={{backgroundColor:'#008000',height:40,textAlign:'center',paddingTop: 7,fontSize:20,color:'white'}}>{this.props.Username}</Text>
+			<Text style={{backgroundColor:'#008000',height:40,textAlign:'center',paddingTop: 7,fontSize:20,color:'white'}}>Trinoto</Text>
 			<GiftedChat
 				messages={this.state.messages}
 				onSend={(this.onSend)}
