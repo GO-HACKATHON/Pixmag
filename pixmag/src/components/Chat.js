@@ -16,6 +16,7 @@ class Chat extends React.Component {
 		this.state = {
 			messages: [], 
 			name:'dio',
+			userid:'',
 	    };
 		this.onSend = this.onSend.bind(this);
 
@@ -29,6 +30,9 @@ class Chat extends React.Component {
         firebase.auth().onAuthStateChanged((user) => {
             if(user){
                 this.uid =user.uid;
+				this.setState({
+		userid: user.uid
+	});
             }else{
                 firebase.auth().signInAnonymously().catch((error) =>{
                     alert(error.message);
@@ -45,9 +49,9 @@ class Chat extends React.Component {
 				createdAt: new Date(Date.UTC(2016, 7, 30, 17, 20, 0)),
 				
                user: message[i].user,
-            });
-			
+            });		
         }
+		this.databind();
     }
 
     closeChat(){
@@ -59,7 +63,28 @@ class Chat extends React.Component {
 	componentWillMount() {
 		var _this=this;
 		this.messagesRef = firebase.database().ref('messages');
-		var ref = firebase.database().ref().child('messages');
+		this.databind();
+
+		console.log(this.state.messages);
+		// Backend.loadMessages((messages)=>{
+		// 	console.log(messages);
+		// 	console.log("hasil");
+		// 	this.setState((previousState)=>{
+		// 		return {
+		// 			messages: GiftedChat.append(previousState.messages, messages),
+		// 		};
+		// 	})
+		// });
+		//var aa = Backend.loadMessages();
+		console.log("datanya");
+		//console.log(Backend.getallData());
+
+		
+	}
+
+databind(){
+	var _this=this;
+	var ref = firebase.database().ref().child('messages');
         ref.on("value", function(snapshot) {
            console.log(snapshot.val());
 		   if(snapshot.val()!=null)
@@ -87,23 +112,7 @@ class Chat extends React.Component {
 		],
 		});
         });
-
-		console.log(this.state.messages);
-		// Backend.loadMessages((messages)=>{
-		// 	console.log(messages);
-		// 	console.log("hasil");
-		// 	this.setState((previousState)=>{
-		// 		return {
-		// 			messages: GiftedChat.append(previousState.messages, messages),
-		// 		};
-		// 	})
-		// });
-		//var aa = Backend.loadMessages();
-		console.log("datanya");
-		//console.log(Backend.getallData());
-
-		
-	}
+}
 
 	onSend(messages = []) {
 		//Backend.sendMessage(messages);
@@ -129,7 +138,7 @@ class Chat extends React.Component {
 				messages={this.state.messages}
 				onSend={(this.onSend)}
 				user={{
-					_id: this.uid,//Backend.getUid()
+					_id: this.state.userid,//Backend.getUid()
 					name: this.props.name,
 					avatar: 'https://facebook.github.io/react/img/logo_og.png',
 				}}
