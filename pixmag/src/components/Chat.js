@@ -90,8 +90,11 @@ databind(){
            console.log(snapshot.val());
 		   if(snapshot.val()!=null)
 		   {
+			   
 			   var obj =snapshot.val();
 			   var arr = Object.keys(obj).map(function(k) { return obj[k] });
+
+arr = arr.sort(function(a, b){return b._id-a._id});
            _this.setState({
 		messages: arr
 	});
@@ -160,7 +163,7 @@ databind(){
 }
 
 Chat.defaultProps = {
-	name: 'bangke',
+	name: 'trinoto',
 };
 
 Chat.propTypes = {
