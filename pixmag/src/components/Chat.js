@@ -45,13 +45,14 @@ class Chat extends React.Component {
 	sendMessage(message){
         for(let i=0;i < message.length ; i++){
             this.messagesRef.push({
+				_id:this.state.messages.length,
 				text: message[i].text,
 				createdAt: new Date(Date.UTC(2016, 7, 30, 17, 20, 0)),
 				
                user: message[i].user,
             });		
         }
-		this.databind();
+		
     }
 
     closeChat(){
@@ -64,7 +65,7 @@ class Chat extends React.Component {
 		var _this=this;
 		this.messagesRef = firebase.database().ref('messages');
 		this.databind();
-
+console.log("test");
 		console.log(this.state.messages);
 		// Backend.loadMessages((messages)=>{
 		// 	console.log(messages);
@@ -117,11 +118,12 @@ databind(){
 	onSend(messages = []) {
 		//Backend.sendMessage(messages);
 		this.sendMessage(messages);
-		this.setState((previousState) => {
-			return {
-				messages: GiftedChat.append(previousState.messages, messages),
-			};
-		});
+		this.databind();
+		// this.setState((previousState) => {
+		// 	return {
+		// 		messages: GiftedChat.append(previousState.messages, messages),
+		// 	};
+		// });
 	}
 
 	Routes(route, navigator){
@@ -158,7 +160,7 @@ databind(){
 }
 
 Chat.defaultProps = {
-	name: 'Dio',
+	name: 'bangke',
 };
 
 Chat.propTypes = {
